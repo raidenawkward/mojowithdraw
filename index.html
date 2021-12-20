@@ -74,28 +74,28 @@ function changeBackground(hexNumber)
             <TABLE border=1 cellPadding=2  cellspacing="0">
                 <TBODY> 
                     <TR> 
-                        <TH ><b>当前账户余额</b></TH>
+                        <TH ><b><font size="6">当前账户余额</font></b></TH>
                         <TD> 
-                            <INPUT name=input onchange="calculateWithdraw(this.form, this, form.member_level)" size=25 >
+                            <INPUT name=input onchange="calculateWithdraw(this.form, this, form.member_level)" size=10 style="font-size:24px;" >
                         </TD>
                     <TR>
-                        <TH ><b>会员等级</b></TH>
+                        <TH ><b><font size="6">会员等级</font></b></TH>
                         <TD> 
-                            <SELECT name=member_level
+                            <SELECT name=member_level style="font-size:24px;"
                                 onchange="onSelectLevel(this.form, form.input, this, form.discount)">
-                                <OPTION value=500 selected>500
+                                <OPTION value=500 selected><font size=4>500</font>
                                 <OPTION value=1000>1000
                                 <OPTION value=2000>2000
                                 <OPTION value=3000>3000</OPTION>
                             </SELECT>
                             (折扣
-                            <INPUT name=discount readonly="readonly" value="0.95" size="15">)
+                            <INPUT name=discount readonly="readonly" value="0.95" size="1">)
                         </TD>
                     </TR>
                     <TR>
-                        <TH ><b>应返金额</b></TH>
+                        <TH ><b><font size="6">应返金额</font></b></TH>
                         <TD> 
-                            <INPUT name=display readonly="readonly" value="0" size=25>
+                            <INPUT name=display readonly="readonly" value="0" size=10 style="font-size:24px;">
                         </TD>
                     </TR>
                 </TBODY> 
@@ -105,48 +105,48 @@ function changeBackground(hexNumber)
                 <TBODY> 
                     <TR> 
                         <TD> 
-                        <INPUT onclick="addChar(this.form.input,'7')" type=button value=7>
+                        <INPUT onclick="addChar(this.form.input,'7')" type=button value=7 style="font-size:24px;">
                         </TD>
                         <TD> 
-                        <INPUT onclick="addChar(this.form.input,'8')" type=button value=8>
+                        <INPUT onclick="addChar(this.form.input,'8')" type=button value=8 style="font-size:24px;">
                         </TD>
                         <TD> 
-                        <INPUT onclick="addChar(this.form.input,'9')" type=button value=9>
+                        <INPUT onclick="addChar(this.form.input,'9')" type=button value=9 style="font-size:24px;">
                         </TD>
                     <TR> 
                     <TD> 
-                        <INPUT onclick="addChar(this.form.input,'4')" type=button value=4>
+                        <INPUT onclick="addChar(this.form.input,'4')" type=button value=4 style="font-size:24px;">
                     </TD>
                     <TD> 
-                        <INPUT onclick="addChar(this.form.input,'5')" type=button value=5>
+                        <INPUT onclick="addChar(this.form.input,'5')" type=button value=5 style="font-size:24px;">
                     </TD>
                     <TD> 
-                    <INPUT onclick="addChar(this.form.input,'6')" type=button value=6>
-                    </TD>
-                    <TR> 
-                    <TD> 
-                    <INPUT onclick="addChar(this.form.input,'1')" type=button value=1>
-                    </TD>
-                    <TD> 
-                    <INPUT onclick="addChar(this.form.input,'2')" type=button value=2>
-                    </TD>
-                    <TD> 
-                    <INPUT onclick="addChar(this.form.input,'3')" type=button value=3>
+                    <INPUT onclick="addChar(this.form.input,'6')" type=button value=6 style="font-size:24px;">
                     </TD>
                     <TR> 
                     <TD> 
-                    <INPUT onclick="addChar(this.form.input,'0')" type=button value=0>
+                    <INPUT onclick="addChar(this.form.input,'1')" type=button value=1 style="font-size:24px;">
                     </TD>
                     <TD> 
-                    <INPUT onclick="addChar(this.form.input,'.')" type=button value=.>
+                    <INPUT onclick="addChar(this.form.input,'2')" type=button value=2 style="font-size:24px;">
                     </TD>
                     <TD> 
-                    <INPUT onclick="onClear(this.form)" type=button value=C>
+                    <INPUT onclick="addChar(this.form.input,'3')" type=button value=3 style="font-size:24px;">
+                    </TD>
+                    <TR> 
+                    <TD> 
+                    <INPUT onclick="addChar(this.form.input,'0')" type=button value=0 style="font-size:24px;">
+                    </TD>
+                    <TD> 
+                    <INPUT onclick="addChar(this.form.input,'.')" type=button value=. style="font-size:26px;">
+                    </TD>
+                    <TD> 
+                    <INPUT onclick="onClear(this.form)" type=button value=C style="font-size:20px;">
                     </TR>
                 </TBODY> 
             </TABLE>
             <BR>
-            <TR><INPUT onclick="calculateWithdraw(this.form, form.input, form.member_level)" type=button value="计算" size="25"></TR>
+            <TR><INPUT onclick="calculateWithdraw(this.form, form.input, form.member_level)" type=button value="计算" size="25" style="font-size:24px;"></TR>
         </FORM>
     </center>
 </body>
