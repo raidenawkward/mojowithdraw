@@ -3,71 +3,74 @@
 <head>
 <title>优惠余额转换</title>
 <meta http-equiv="content-type" content="text/html;charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <SCRIPT language=LiveScript>
 
-var computed = false
-var destination = "/"
-var decimal = 0
+    var computed = false
+    var destination = "/"
+    var decimal = 0
 
-var MAP_DISCOUNT = new Map()
-    MAP_DISCOUNT.set("500", 0.95)
-    MAP_DISCOUNT.set("1000", 0.92)
-    MAP_DISCOUNT.set("2000", 0.88)
-    MAP_DISCOUNT.set("3000", 0.85)
+    var MAP_DISCOUNT = new Map()
+        MAP_DISCOUNT.set("500", 0.95)
+        MAP_DISCOUNT.set("1000", 0.92)
+        MAP_DISCOUNT.set("2000", 0.88)
+        MAP_DISCOUNT.set("3000", 0.85)
 
-function calculateWithdraw(entryform, balanceForm, levelForm)
-{
-    balance = balanceForm.value
-    level = levelForm[levelForm.selectedIndex].value
-    discount = MAP_DISCOUNT.get(level)
-    result = balance / discount - balance
-    entryform.display.value = result.toFixed(2)
-}
-
-function onSelectLevel(entryform, balanceForm, levelForm, target)
-{
-    level = levelForm[levelForm.selectedIndex].value
-    discount = MAP_DISCOUNT.get(level)
-    target.value = discount
-
-    calculateWithdraw(entryform, balanceForm, levelForm)
-}
-
-function addChar(input, character)
-{
-    if((character=='.' && decimal=="0") || character!='.')
+    function calculateWithdraw(entryform, balanceForm, levelForm)
     {
-        (input.value == "" || input.value == "0") ? input.value = character : input.value += character
-        calculateWithdraw(input.form, input.form.input, input.form.member_level)
-        computed = true 
-        if (character == '.')
-        {
-            decimal = 1
-        } 
+        balance = balanceForm.value
+        level = levelForm[levelForm.selectedIndex].value
+        discount = MAP_DISCOUNT.get(level)
+        result = balance / discount - balance
+        entryform.display.value = result.toFixed(2)
     }
-}
 
-function openVothcom()
-{
-    window.open("","Display window","toolbar=no,directories=no,menubar=no");
-}
+    function onSelectLevel(entryform, balanceForm, levelForm, target)
+    {
+        level = levelForm[levelForm.selectedIndex].value
+        discount = MAP_DISCOUNT.get(level)
+        target.value = discount
 
-function onClear(form)
-{
-    form.input.value = ""
-    form.display.value = ""
-    decimal = 0
-}
+        calculateWithdraw(entryform, balanceForm, levelForm)
+    }
 
-function changeBackground(hexNumber)
-{
-    document.bgColor=hexNumber
-}
+    function addChar(input, character)
+    {
+        if((character=='.' && decimal=="0") || character!='.')
+        {
+            (input.value == "" || input.value == "0") ? input.value = character : input.value += character
+            calculateWithdraw(input.form, input.form.input, input.form.member_level)
+            computed = true 
+            if (character == '.')
+            {
+                decimal = 1
+            } 
+        }
+    }
+
+    function openVothcom()
+    {
+        window.open("","Display window","toolbar=no,directories=no,menubar=no");
+    }
+
+    function onClear(form)
+    {
+        form.input.value = ""
+        form.display.value = ""
+        decimal = 0
+    }
+
+    function changeBackground(hexNumber)
+    {
+        document.bgColor=hexNumber
+    }
 </SCRIPT>
 
-
 </head>
-
+<!-- 
+<style>
+    body{transform: scale(1);}
+</style> -->
 <body>
     <center>
         <FORM method=post name=calculator>
