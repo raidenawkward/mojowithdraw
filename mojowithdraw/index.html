@@ -1,0 +1,153 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>优惠余额转换</title>
+<meta http-equiv="content-type" content="text/html;charset=utf-8">
+<SCRIPT language=LiveScript>
+
+var computed = false
+var destination = "/"
+var decimal = 0
+
+var MAP_DISCOUNT = new Map()
+    MAP_DISCOUNT.set("500", 0.95)
+    MAP_DISCOUNT.set("1000", 0.92)
+    MAP_DISCOUNT.set("2000", 0.88)
+    MAP_DISCOUNT.set("3000", 0.85)
+
+function calculateWithdraw(entryform, balanceForm, levelForm)
+{
+    balance = balanceForm.value
+    level = levelForm[levelForm.selectedIndex].value
+    discount = MAP_DISCOUNT.get(level)
+    result = balance / discount - balance
+    entryform.display.value = result.toFixed(2)
+}
+
+function onSelectLevel(entryform, balanceForm, levelForm, target)
+{
+    level = levelForm[levelForm.selectedIndex].value
+    discount = MAP_DISCOUNT.get(level)
+    target.value = discount
+
+    calculateWithdraw(entryform, balanceForm, levelForm)
+}
+
+function addChar(input, character)
+{
+    if((character=='.' && decimal=="0") || character!='.')
+    {
+        (input.value == "" || input.value == "0") ? input.value = character : input.value += character
+        calculateWithdraw(input.form, input.form.input, input.form.member_level)
+        computed = true 
+        if (character == '.')
+        {
+            decimal = 1
+        } 
+    }
+}
+
+function openVothcom()
+{
+    window.open("","Display window","toolbar=no,directories=no,menubar=no");
+}
+
+function onClear(form)
+{
+    form.input.value = ""
+    form.display.value = ""
+    decimal = 0
+}
+
+function changeBackground(hexNumber)
+{
+    document.bgColor=hexNumber
+}
+</SCRIPT>
+
+
+</head>
+
+<body>
+    <center>
+        <FORM method=post name=calculator>
+            <TABLE border=1 cellPadding=2  cellspacing="0">
+                <TBODY> 
+                    <TR> 
+                        <TH ><b>当前账户余额</b></TH>
+                        <TD> 
+                            <INPUT name=input onchange="calculateWithdraw(this.form, this, form.member_level)" size=25 >
+                        </TD>
+                    <TR>
+                        <TH ><b>会员等级</b></TH>
+                        <TD> 
+                            <SELECT name=member_level
+                                onchange="onSelectLevel(this.form, form.input, this, form.discount)">
+                                <OPTION value=500 selected>500
+                                <OPTION value=1000>1000
+                                <OPTION value=2000>2000
+                                <OPTION value=3000>3000</OPTION>
+                            </SELECT>
+                            (折扣
+                            <INPUT name=discount readonly="readonly" value="0.95" size="15">)
+                        </TD>
+                    </TR>
+                    <TR>
+                        <TH ><b>应返金额</b></TH>
+                        <TD> 
+                            <INPUT name=display readonly="readonly" value="0" size=25>
+                        </TD>
+                    </TR>
+                </TBODY> 
+            </TABLE>
+            <BR/>
+            <TABLE border=1 cellPadding=2  cellspacing="0">
+                <TBODY> 
+                    <TR> 
+                        <TD> 
+                        <INPUT onclick="addChar(this.form.input,'7')" type=button value=7>
+                        </TD>
+                        <TD> 
+                        <INPUT onclick="addChar(this.form.input,'8')" type=button value=8>
+                        </TD>
+                        <TD> 
+                        <INPUT onclick="addChar(this.form.input,'9')" type=button value=9>
+                        </TD>
+                    <TR> 
+                    <TD> 
+                        <INPUT onclick="addChar(this.form.input,'4')" type=button value=4>
+                    </TD>
+                    <TD> 
+                        <INPUT onclick="addChar(this.form.input,'5')" type=button value=5>
+                    </TD>
+                    <TD> 
+                    <INPUT onclick="addChar(this.form.input,'6')" type=button value=6>
+                    </TD>
+                    <TR> 
+                    <TD> 
+                    <INPUT onclick="addChar(this.form.input,'1')" type=button value=1>
+                    </TD>
+                    <TD> 
+                    <INPUT onclick="addChar(this.form.input,'2')" type=button value=2>
+                    </TD>
+                    <TD> 
+                    <INPUT onclick="addChar(this.form.input,'3')" type=button value=3>
+                    </TD>
+                    <TR> 
+                    <TD> 
+                    <INPUT onclick="addChar(this.form.input,'0')" type=button value=0>
+                    </TD>
+                    <TD> 
+                    <INPUT onclick="addChar(this.form.input,'.')" type=button value=.>
+                    </TD>
+                    <TD> 
+                    <INPUT onclick="onClear(this.form)" type=button value=C>
+                    </TR>
+                </TBODY> 
+            </TABLE>
+            <BR>
+            <TR><INPUT onclick="calculateWithdraw(this.form, form.input, form.member_level)" type=button value="计算" size="25"></TR>
+        </FORM>
+    </center>
+</body>
+</html>
