@@ -77,40 +77,40 @@
 <body>
     <center>
         <FORM method=post name=calculator>
-            <b><font size=6 >Mojo会员转换计算</font></b>
+            <b><font size=6 >Mojo会员余额转换</font></b>
             <br>
             <br>
             <TABLE border=1 cellPadding=2  cellspacing="0">
                 <TBODY> 
                     <TR> 
-                        <TH ><b><font size="6">当前账户余额</font></b></TH>
+                        <TH ><b><font style="font-size:20px;">当前账户余额</font></b></TH>
                         <TD>
-                            <INPUT name=input onchange="calculateWithdraw(this.form, this, form.member_level)" size=8 style="font-size:24px;" >
+                            <INPUT name=input onchange="calculateWithdraw(this.form, this, form.member_level)" size=10 style="font-size:24px;" >
                         </TD>
                     <TR>
-                        <TH ><b><font size="6">会员等级</font></b></TH>
+                        <TH ><b><font style="font-size:20px;"">会员等级</font></b></TH>
                         <TD>
                             <SELECT name=member_level style="font-size:24px;"
                                 onchange="onSelectLevel(this.form, form.input, this, form.discount)">
-                                <OPTION value=500 selected><font size=4>500</font>
+                                <OPTION value=500 selected>500
                                 <OPTION value=1000>1000
                                 <OPTION value=2000>2000
                                 <OPTION value=3000>3000</OPTION>
                             </SELECT>
                             (折扣
-                            <INPUT name=discount readonly="readonly" value="0.95" size="1">)
+                            <INPUT name=discount readonly="readonly" value="0.95" size="1" style="font-size:14px;">)
                         </TD>
                     </TR>
                     <TR>
-                        <TH ><b><font size="6">应返金额</font></b></TH>
+                        <TH ><b><font style="font-size:20px;">应返金额</font></b></TH>
                         <TD>
-                            <INPUT name=result_withdraw readonly="readonly" value="0" size=8 style="font-size:24px;">
+                            <INPUT name=result_withdraw readonly="readonly" value="0" size=10 style="font-size:24px;">
                         </TD>
                     </TR>
                     <TR>
-                        <TH ><b><font size="6">转换后账户余额</font></b></TH>
+                        <TH ><b><font style="font-size:20px;">转换后账户余额</font></b></TH>
                         <TD>
-                            <INPUT name=result_new_balance readonly="readonly" value="0" size=8 style="font-size:24px;">
+                            <INPUT name=result_new_balance readonly="readonly" value="0" size=10 style="font-size:24px;">
                         </TD>
                     </TR>
                 </TBODY> 
