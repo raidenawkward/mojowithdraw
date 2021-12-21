@@ -6,6 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <SCRIPT language=LiveScript>
 
+    var calculatorFontStyle = '"font-size:54px; width:80px; height:80px"'
     var computed = false
     var destination = "/"
     var decimal = 0
@@ -21,8 +22,12 @@
         balance = balanceForm.value
         level = levelForm[levelForm.selectedIndex].value
         discount = MAP_DISCOUNT.get(level)
-        result = balance / discount - balance
-        entryform.display.value = result.toFixed(2)
+
+        newBalance = balance / discount
+        result = newBalance - balance
+
+        entryform.result_withdraw.value = result.toFixed(2)
+        entryform.result_new_balance.value = newBalance.toFixed(2)
     }
 
     function onSelectLevel(entryform, balanceForm, levelForm, target)
@@ -56,7 +61,8 @@
     function onClear(form)
     {
         form.input.value = ""
-        form.display.value = ""
+        form.result_withdraw.value = ""
+        form.result_new_balance.value = ""
         decimal = 0
     }
 
@@ -67,23 +73,23 @@
 </SCRIPT>
 
 </head>
-<!-- 
-<style>
-    body{transform: scale(1);}
-</style> -->
+
 <body>
     <center>
         <FORM method=post name=calculator>
+            <b><font size=6 >Mojo会员转换计算</font></b>
+            <br>
+            <br>
             <TABLE border=1 cellPadding=2  cellspacing="0">
                 <TBODY> 
                     <TR> 
                         <TH ><b><font size="6">当前账户余额</font></b></TH>
-                        <TD> 
-                            <INPUT name=input onchange="calculateWithdraw(this.form, this, form.member_level)" size=10 style="font-size:24px;" >
+                        <TD>
+                            <INPUT name=input onchange="calculateWithdraw(this.form, this, form.member_level)" size=8 style="font-size:24px;" >
                         </TD>
                     <TR>
                         <TH ><b><font size="6">会员等级</font></b></TH>
-                        <TD> 
+                        <TD>
                             <SELECT name=member_level style="font-size:24px;"
                                 onchange="onSelectLevel(this.form, form.input, this, form.discount)">
                                 <OPTION value=500 selected><font size=4>500</font>
@@ -97,8 +103,14 @@
                     </TR>
                     <TR>
                         <TH ><b><font size="6">应返金额</font></b></TH>
-                        <TD> 
-                            <INPUT name=display readonly="readonly" value="0" size=10 style="font-size:24px;">
+                        <TD>
+                            <INPUT name=result_withdraw readonly="readonly" value="0" size=8 style="font-size:24px;">
+                        </TD>
+                    </TR>
+                    <TR>
+                        <TH ><b><font size="6">转换后账户余额</font></b></TH>
+                        <TD>
+                            <INPUT name=result_new_balance readonly="readonly" value="0" size=8 style="font-size:24px;">
                         </TD>
                     </TR>
                 </TBODY> 
@@ -107,49 +119,50 @@
             <TABLE border=1 cellPadding=2  cellspacing="0">
                 <TBODY> 
                     <TR> 
-                        <TD> 
-                        <INPUT onclick="addChar(this.form.input,'7')" type=button value=7 style="font-size:24px;">
+                        <TD>
+                        <INPUT onclick="addChar(this.form.input,'7')" type=button value=7 style="font-size:54px; width:80px; height:80px">
                         </TD>
-                        <TD> 
-                        <INPUT onclick="addChar(this.form.input,'8')" type=button value=8 style="font-size:24px;">
+                        <TD>
+                        <INPUT onclick="addChar(this.form.input,'8')" type=button value=8 style="font-size:54px; width:80px; height:80px">
                         </TD>
-                        <TD> 
-                        <INPUT onclick="addChar(this.form.input,'9')" type=button value=9 style="font-size:24px;">
+                        <TD>
+                        <INPUT onclick="addChar(this.form.input,'9')" type=button value=9 style="font-size:54px; width:80px; height:80px">
                         </TD>
                     <TR> 
-                    <TD> 
-                        <INPUT onclick="addChar(this.form.input,'4')" type=button value=4 style="font-size:24px;">
+                    <TD>
+                        <INPUT onclick="addChar(this.form.input,'4')" type=button value=4 style="font-size:54px; width:80px; height:80px">
                     </TD>
-                    <TD> 
-                        <INPUT onclick="addChar(this.form.input,'5')" type=button value=5 style="font-size:24px;">
+                    <TD>
+                        <INPUT onclick="addChar(this.form.input,'5')" type=button value=5 style="font-size:54px; width:80px; height:80px">
                     </TD>
-                    <TD> 
-                    <INPUT onclick="addChar(this.form.input,'6')" type=button value=6 style="font-size:24px;">
-                    </TD>
-                    <TR> 
-                    <TD> 
-                    <INPUT onclick="addChar(this.form.input,'1')" type=button value=1 style="font-size:24px;">
-                    </TD>
-                    <TD> 
-                    <INPUT onclick="addChar(this.form.input,'2')" type=button value=2 style="font-size:24px;">
-                    </TD>
-                    <TD> 
-                    <INPUT onclick="addChar(this.form.input,'3')" type=button value=3 style="font-size:24px;">
+                    <TD>
+                    <INPUT onclick="addChar(this.form.input,'6')" type=button value=6 style="font-size:54px; width:80px; height:80px">
                     </TD>
                     <TR> 
-                    <TD> 
-                    <INPUT onclick="addChar(this.form.input,'0')" type=button value=0 style="font-size:24px;">
+                    <TD>
+                    <INPUT onclick="addChar(this.form.input,'1')" type=button value=1 style="font-size:54px; width:80px; height:80px">
                     </TD>
-                    <TD> 
-                    <INPUT onclick="addChar(this.form.input,'.')" type=button value=. style="font-size:26px;">
+                    <TD>
+                    <INPUT onclick="addChar(this.form.input,'2')" type=button value=2 style="font-size:54px; width:80px; height:80px">
                     </TD>
-                    <TD> 
-                    <INPUT onclick="onClear(this.form)" type=button value=C style="font-size:20px;">
-                    </TR>
+                    <TD>
+                    <INPUT onclick="addChar(this.form.input,'3')" type=button value=3 style="font-size:54px; width:80px; height:80px">
+                    </TD>
+                    <TR> 
+                    <TD>
+                    <INPUT onclick="addChar(this.form.input,'0')" type=button value=0 style="font-size:54px; width:80px; height:80px">
+                    </TD>
+                    <TD>
+                    <INPUT onclick="addChar(this.form.input,'.')" type=button value='.' style="font-size:54px; width:80px; height:80px">
+                    </TD>
+                    <TD>
+                    <INPUT onclick="onClear(this.form)" type=button value=C style="font-size:54px;width:80px; height:80px">
                 </TBODY> 
             </TABLE>
-            <BR>
-            <TR><INPUT onclick="calculateWithdraw(this.form, form.input, form.member_level)" type=button value="计算" size="25" style="font-size:24px;"></TR>
+
+            <TABLE border=1 cellPadding=0  cellspacing="0">
+                <TR><TD><INPUT onclick="calculateWithdraw(this.form, form.input, form.member_level)" type=button value="计算" size="25" style="font-size:54px; width:256px"></TD></TR>
+            </TABLE>
         </FORM>
     </center>
 </body>
